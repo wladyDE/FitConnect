@@ -1,0 +1,66 @@
+@import '../../styles/variables.scss'; 
+
+.requests {
+    position: fixed;
+    z-index: 15;
+    left: 15%;
+    top: 0;
+    background: $main-color;
+    color:  $white;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 400;
+}
+
+.notifications-close {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: $white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media(max-width:590px) {
+    .requests {
+        left: 0;
+        width: 92vw;
+        padding: 10px;
+    }
+}
+
+.appear {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: appearAnimation 0.7s ease-in-out forwards;
+}
+
+.disappear {
+  opacity: 1;
+  transform: translateX(0); 
+  animation: disappearAnimation 0.5s ease-in-out forwards;
+}
+
+@keyframes appearAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-100%); 
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+}
+
+@keyframes disappearAnimation {
+  from {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%); 
+  }
+}
+
+  

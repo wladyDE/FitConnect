@@ -1,0 +1,195 @@
+@import '../../styles/variables.scss';
+
+.fitconnect {
+  font-family: Roboto serif;
+
+  &-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-title {
+    color: $white;
+    font-size: 20px;
+  }
+
+  &-form {
+    background-color: $main-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 30%;
+    height: 100vh;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        width: 250px;
+        padding: 15px;
+        margin: 5px 0;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        background-color: $white;
+      }
+
+      button {
+        background-color: $secondary-color;
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+
+        &:hover {
+          background-color: $orange-hover;
+        }
+      }
+    }
+
+    p {
+      color: $white;
+      font-size: 12px;
+      margin-top: 10px;
+
+      .underline {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-logo {
+    background-color: $secondary-color;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .default-logo {
+      width: 783px;
+      height: 260px;
+    }
+
+    .media-logo {
+      display: none;
+    }
+  }
+
+  &-error {
+    margin-top: 5px;
+    color: $red;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fitconnect-logo {
+    .default-logo {
+      width: 705px;
+      height: 234px;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .fitconnect {
+
+    &-form {
+      form {
+
+        input,
+        button {
+          width: 180px;
+        }
+
+        button {
+          margin: 10px auto 0 auto;
+        }
+      }
+    }
+
+    &-logo {
+      .default-logo {
+        width: 509px;
+        height: 169px;
+      }
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .fitconnect {
+    &-wrapper {
+      justify-content: unset;
+      flex-direction: column;
+      padding-top: 50px;
+      background-color: $main-color;
+    }
+
+    &-form,
+    &-logo {
+      height: auto;
+      width: 100%;
+    }
+
+    &-form {
+      order: 2;
+
+      form {
+
+        input,
+        button {
+          width: 260px;
+        }
+
+        button {
+          margin: 10px auto 0 auto;
+        }
+      }
+    }
+
+    &-logo {
+      background-color: $main-color;
+      order: 1;
+
+      .default-logo {
+        display: none;
+      }
+
+      .media-logo {
+        display: block;
+        width: 509px;
+        height: 169px;
+      }
+    }
+
+
+  }
+}
+
+@media(max-width:590px) {
+  .fitconnect-logo {
+    .media-logo {
+      width: 407px;
+      height: 135px;
+    }
+  }
+}
+
+@media(max-width:450px) {
+  .fitconnect-logo {
+    .media-logo {
+      width: 255px;
+      height: 85px;
+    }
+  }
+}

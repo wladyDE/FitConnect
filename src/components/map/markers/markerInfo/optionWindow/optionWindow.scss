@@ -1,0 +1,54 @@
+@import '../../../../../styles/variables.scss';
+
+.edit-marker{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $main-color; 
+    padding: 20px;
+    z-index: 20;
+}
+
+.btn-view, .btn-edit, .btn-delete {
+    background-color: $secondary-color; 
+    color: $white; 
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 50px;
+}
+
+.btn-view:hover, .btn-edit:hover, .btn-delete:hover {
+    background-color: $orange-hover; 
+}
+
+.btn-edit, .btn-delete{
+    margin-top: 10px;
+}
+
+.btn__edit-close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: $white;
+}
+
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: $white;
+    cursor: pointer;
+}

@@ -1,0 +1,176 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/fonts.scss';
+
+.gm-style {
+    font-family: "Signika Negative", sans-serif;
+    font-weight: 500;
+}
+
+.gm-style .gm-style-iw-c {
+    z-index: 10;
+    border-radius: 10px;
+    padding: 0;
+}
+
+.gm-style .gm-style-iw-tc::after,
+.gm-style .gm-style-iw-c {
+    background-color: $main-color;
+}
+
+.gm-style-iw-d {
+    overflow: hidden !important;
+}
+
+.marker-info {
+    color: $white;
+    width: 400px;
+    padding: 20px;
+}
+
+.btn-join {
+    background-color: $secondary-color;
+    padding: 5px 20px;
+    color: $white;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    &__block-right {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__block-left {
+        width: 80%;
+    }
+
+    &-activity {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &-progress {
+        width: 30px;
+        height: 30px;
+        display: block;
+    }
+
+    &-time {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    &-people {
+        margin-top: 10px;
+    }
+}
+
+.btn-close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: $white;
+}
+
+.btn-close:hover {
+    color: $gray;
+}
+
+.spinner-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+}
+
+@media(max-width:590px) {
+    .marker-info {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .info-time {
+        margin-top: 0;
+    }
+
+    .info-progress {
+        display: none;
+    }
+}
+
+@media(max-width:450px) {
+    .marker-info {
+        width: 150px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info {
+        flex-direction: column;
+
+        &__block-right,
+        &__block-left {
+            width: 100%;
+        }
+
+        &__block-right {
+            margin-top: 5px;
+        }
+    }
+
+    .gm-style-iw.gm-style-iw-c .map-form {
+        width: 170px;
+
+        .form-date,
+        .form-people,
+        .form-activity {
+            width: 150px;
+
+            label {
+                font-size: 12px;
+            }
+        }
+
+        .addTrainingBtn {
+            width: 150px;
+        }
+
+        #description {
+            width: 130px;
+        }
+    }
+
+    .gm-style-iw.gm-style-iw-c .confirmation-modal {
+        width: 170px;
+        padding: 10px;
+
+        p {
+            width: 150px;
+            text-align: center;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+
+        .confirmation-modal__button {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+    }
+}

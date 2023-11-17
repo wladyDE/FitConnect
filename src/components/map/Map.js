@@ -1,106 +1,98 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import GeoLocation from './geoLocation/GeoLocation';
-import Spinner from '../spinner/Spinner'
-import { GOOGLE_MAPS_API_KEY } from '../../config/config';
-import { libraries, mapContainerStyle, options } from '../../config/mapConfig';
+import React, { useState, useEffect } from "react";
+import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
+import GeolocationMarker from "./markers/geoMarker/GeolocationMarker";
+import Spinner from '../spinner/Spinner';
+import TrainingMarkers from "./markers/GoogleMapMarkers";
+
+import 'leaflet/dist/leaflet.css';
 import './map.scss';
-import GoogleMapMarkers from "./markers/GoogleMapMarkers";
-import LocationSearch from './locationSearch/LocationSearch';
 
 const Map = () => {
-    const [center, setCenter] = useState({
-        lat: 51.5134,
-        lng: 7.4686
-    });
+    const [position, setPosition] = useState([51.5134, 7.4686]);
     const [isLoading, setLoading] = useState(true);
-    const [mapClick, setMapClick] = useState(null);
-    const [userLocation, setUserLocation] = useState(null);
-    const [mapReady, setMapReady] = useState(false);
     const [plusBtn, setPlusBtn] = useState(false);
-    const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-        libraries,
-    });
-    const mapRef = useRef();
-    const onMapLoad = useCallback((map) => {
-        mapRef.current = map;
-    }, []);
-    const panTo = useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(14);
-    }, [])
+    const [mapClick, setMapClick] = useState(null);
+    const [selected, setSelected] = useState(null);
 
     useEffect(() => {
         getGeoLocation();
     }, []);
-    
+
     useEffect(() => {
-        if (userLocation) {
-            setMapReady(true);
-        }
-    }, [userLocation]);
+        changeMapCursor();
+    }, [plusBtn]);
 
     const getGeoLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                setCenter({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                });
-                setUserLocation({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                });
-                setLoading(false);
-            }, (error) => {
-                console.error(error);
-                setLoading(false);
-            });
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setPosition([latitude, longitude]);
+                    setLoading(false);
+                },
+                (error) => {
+                    console.error('Error getting geolocation:', error.message);
+                }
+            );
         } else {
-            console.warn('Geolocation is not supported by your Browser');
-            setLoading(false);
+            //TODO : add geolocation Error
+            console.error('Geolocation is not supported by your browser');
         }
     }
 
-    const dynamicOptions = {
-        ...options,
-        draggableCursor: plusBtn ? 'pointer' : 'grab'
-    };
+    const changeMapCursor = () => {
+        const mapContainer = document.querySelector('.global-map');
+        if (mapContainer) {
+            mapContainer.style.cursor = plusBtn ? 'pointer' : 'grab';
+        }
+    }
 
-    if (loadError) return "Error loading maps";
-    if (!isLoaded || isLoading)
+    const onMapClick = (event) => {
+        if (plusBtn) {
+            setMapClick(event)
+        }
+    }
+
+    const onAddTrainingClick = () => {
+        setPlusBtn(!plusBtn); 
+        setSelected(null); 
+    }
+
+    if (isLoading)
         return (<div className="spinner-container">
             <Spinner />
         </div>);
 
     return (
         <>
-            {mapReady && <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                zoom={14}
-                center={center}
-                options={dynamicOptions}
-                onClick={(event) => { setMapClick(event) }}
-                onLoad={onMapLoad}
-            >
-                <GeoLocation panTo={panTo} />
-                <GoogleMapMarkers mapClick={mapClick} plusBtn={plusBtn} setPlusBtn={setPlusBtn} />
-                {userLocation && <Marker
-                    position={userLocation}
-                    icon={{
-                        url: "img/geolocation.png",
-                        scaledSize: new window.google.maps.Size(30, 30)
-                    }}
-                />}
+            <MapContainer center={position} zoom={13} className="global-map" onClick={onMapClick}>
+                <TileLayer
+                    url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
+                    attribution='&copy; Wikimedia'
+                />
+                <MyComponent />
 
-                <LocationSearch panTo={panTo} />
-                <button className={`btn btn-add ${plusBtn ? 'btn-active' : ''}`} onClick={() => setPlusBtn(!plusBtn)}>Add Training</button>
-                <button className={`btn btn-add-media ${plusBtn ? 'btn-active' : ''}`} onClick={() => setPlusBtn(!plusBtn)}>+</button>
+                <GeolocationMarker position={position} />
+                <TrainingMarkers mapClick={mapClick} plusBtn={plusBtn} setPlusBtn={setPlusBtn} selected={selected} setSelected={setSelected} />
 
-            </GoogleMap>}
+
+            </MapContainer>
+
+            <button className={`btn btn-add ${plusBtn ? 'btn-active' : ''}`} onClick={onAddTrainingClick}>Add Training</button>
+            <button className={`btn btn-add-media ${plusBtn ? 'btn-active' : ''}`} onClick={onAddTrainingClick}>+</button>
         </>
     );
+
+    function MyComponent() {
+        const map = useMapEvents({
+          click: (mapClick) => {
+            if(plusBtn){
+                setMapClick({lat : mapClick.latlng.lat, lng : mapClick.latlng.lng})
+            }
+          }
+        })
+        return null
+      }
 }
 
 export default Map;

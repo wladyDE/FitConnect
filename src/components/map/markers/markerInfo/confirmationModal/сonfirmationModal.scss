@@ -3,9 +3,6 @@
 .confirmation-modal {
     background-color: $main-color;
     color: $white;
-    width: 300px;
-    height: 80px;
-    padding: 20px;
 
     &__content {
         display: flex;
@@ -50,20 +47,5 @@
         &:hover{
             background-color: $gray-hover;
         }
-    }
-
-    .btn-close {
-        position: absolute;
-        top: 0px;
-        right: 10px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 20px;
-        color: $white;
-    }
-    
-    .btn-close:hover {
-        color: $gray-hover;
     }
 }

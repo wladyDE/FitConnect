@@ -1,6 +1,12 @@
 @import '../../styles/variables.scss';
 @import '../../styles/fonts.scss'; 
 
+.global-map {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
 .locate {
     position: absolute;
     top: 1rem;
@@ -27,12 +33,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $white;
+    border-color: $secondary-color;
+    border-width: 1;
     color: black;
-    border: none;
-    z-index: 5;
+    z-index: 10;
     position: fixed;
     cursor: pointer;
     font-family: 'Signika Negative', sans-serif;
+    border: 2px solid $gray-hover;
 }
 
 .btn-add {

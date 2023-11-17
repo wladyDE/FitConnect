@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { InfoWindow } from "@react-google-maps/api";
+import { Popup } from 'react-leaflet';
 import { MapForm } from '../../mapForm/MapForm';
 import OptionWindow from './optionWindow/OptionWindow';
 import ConfirmationModal from './confirmationModal/ConfirmationModal';
@@ -7,7 +7,6 @@ import MarkerView from './markerView/MarkerView';
 import { AuthContext } from "../../../../context/AuthContext";
 
 const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
-    const [showInfoWindow, setShowInfoWindow] = useState(false);
     const [view, setView] = useState('options');
     const { currentUser } = useContext(AuthContext);
     const { lat, lng } = selected;
@@ -15,20 +14,18 @@ const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
     useEffect(() => {
         if (selected !== null) {
             setView('options')
-            setShowInfoWindow(true);
         } else {
-            setShowInfoWindow(false);
         }
     }, [selected]);
 
-    const onViewBtnClick = () => {
+    const onViewBtnClick = (e) => {
+        e.stopPropagation();
         setView('view-only');
     }
 
     return (
-        showInfoWindow &&
-        <InfoWindow
-            position={{ lat, lng}}
+        <Popup
+            position={{ lat, lng }}
             onCloseClick={() => { setSelected(null) }}>
             <>
                 {currentUser.uid !== selected.owner.id ? (
@@ -67,7 +64,7 @@ const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
                     </>
                 )}
             </>
-        </InfoWindow>
+        </Popup>
     );
 }
 

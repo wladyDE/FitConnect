@@ -1,30 +1,22 @@
 @import '../../../../../styles/variables.scss';
 @import '../../../../../styles/fonts.scss';
 
-.gm-style {
+.leaflet-popup-content-wrapper {
     font-family: "Signika Negative", sans-serif;
     font-weight: 500;
-}
-
-.gm-style .gm-style-iw-c {
     z-index: 10;
-    border-radius: 10px;
     padding: 0;
-}
-
-.gm-style .gm-style-iw-tc::after,
-.gm-style .gm-style-iw-c {
-    background-color: $main-color;
-}
-
-.gm-style-iw-d {
+    background-color: $main-color !important;
+    color: $white !important; 
     overflow: hidden !important;
 }
 
-.marker-info {
-    color: $white;
-    width: 400px;
-    padding: 20px;
+.leaflet-popup-tip {
+    background: $main-color !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button{
+    color: $white !important;
 }
 
 .btn-join {
@@ -74,20 +66,6 @@
     }
 }
 
-.btn-close {
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: $white;
-}
-
-.btn-close:hover {
-    color: $gray;
-}
 
 .spinner-container {
     margin-top: 40px;
@@ -99,11 +77,6 @@
 }
 
 @media(max-width:590px) {
-    .marker-info {
-        width: 300px;
-        padding: 10px;
-    }
-
     .info-time {
         margin-top: 0;
     }
@@ -115,8 +88,6 @@
 
 @media(max-width:450px) {
     .marker-info {
-        width: 150px;
-        padding: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;

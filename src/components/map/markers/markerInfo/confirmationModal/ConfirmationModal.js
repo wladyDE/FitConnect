@@ -9,22 +9,23 @@ const ConfirmationModal = ({ onDeleteBtnClick, setSelected, selected, setView, t
         setSelected(null);
     }
 
-    const onDeleteCancel = () => {
+    const onDeleteCancel = (e) => {
+        e.stopPropagation();
         setView('options');
     }
 
-    const onJoinConfirm = () => {
-        join();
+    const onJoinConfirm = (e) => {
+        join(e);
         setShowConfirmModal(false);
     }
 
-    const onJoinCancel = () => {
+    const onJoinCancel = (e) => {
+        e.stopPropagation();
         setShowConfirmModal(false);
     }
 
     return (
         <div className='confirmation-modal'>
-            <button className='btn btn-close'> &times;</button>
             <div className="confirmation-modal__content">
                 {type === 'delete' &&
                     <View

@@ -77,8 +77,8 @@ export const MapForm = ({ onSubmit, onClose, selected, setSelected }) => {
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
             {({ setFieldValue, errors, touched, values }) => (
                 <Form className={`map-form ${selected ? '' : 'new-training-form'}`}>
-                    <button type="button" className="close-button" onClick={closeForm}>&times;</button>
-
+                   {!selected &&   <button type="button" className="close-button" onClick={closeForm}>&times;</button>}
+                   
                     <div className="form-activity">
                         <label htmlFor="activityType">Training :</label>
                         <Select

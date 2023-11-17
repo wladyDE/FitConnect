@@ -49,12 +49,16 @@ const MarkerView = ({ selected }) => {
     const { activityType, maxPeople, description, time, trainingTime } = selected;
     const percentage = findPercentage(time, trainingTime);
 
-    const onJoin = async () => {
+    const onJoin = async (e) => {
         await save(selected, currentUser);
+        e.stopPropagation();
         setRequestStatus('active');
     }
 
-    const content = getRequestStatusContent(() => setShowConfirmModal(true));
+    const content = getRequestStatusContent((e) =>{ 
+        setShowConfirmModal(true)
+        e.stopPropagation();
+    });
 
     return (
         showConfirmModal ? (<ConfirmationModal setShowConfirmModal={setShowConfirmModal} join={onJoin} type={'join'} />)
@@ -64,10 +68,11 @@ const MarkerView = ({ selected }) => {
             <div className='marker-info'>
                 <p className='info-activity'>{capitalizeFirstLetter(activityType)}</p>
                 <div className="info">
-                    <div className="info__block-left">
+                    <div className="info__block-left" style={{ display: description.trim() !== '' ? 'block' : 'none' }}>
                         <p className='info-description'>{description}</p>
                     </div>
-                    <div className="info__block-right">
+
+                    <div className="info__block-right" style={{ width: description.trim() !== '' ? '20%' : '100%' }}>
                         <CircularProgressbar
                             className='info-progress'
                             value={percentage}

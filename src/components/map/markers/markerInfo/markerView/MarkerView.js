@@ -68,11 +68,11 @@ const MarkerView = ({ selected }) => {
             <div className='marker-info'>
                 <p className='info-activity'>{capitalizeFirstLetter(activityType)}</p>
                 <div className="info">
-                    <div className="info__block-left" style={{ display: description.trim() !== '' ? 'block' : 'none' }}>
+                    <div className="info__block-left">
                         <p className='info-description'>{description}</p>
                     </div>
 
-                    <div className="info__block-right" style={{ width: description.trim() !== '' ? '20%' : '100%' }}>
+                    <div className="info__block-right">
                         <CircularProgressbar
                             className='info-progress'
                             value={percentage}

@@ -14,7 +14,6 @@ const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
     useEffect(() => {
         if (selected !== null) {
             setView('options')
-        } else {
         }
     }, [selected]);
 
@@ -23,11 +22,15 @@ const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
         setView('view-only');
     }
 
+    const onCloseBtnClick = (e) => {
+        e.stopPropagation(); 
+        setSelected(null); 
+    }
+
     return (
-        <Popup
-            position={{ lat, lng }}
-            onCloseClick={() => { setSelected(null) }}>
+        selected && <Popup position={{ lat, lng }} closeButton={false}>
             <>
+            <button type="button" className="close-button" onClick={(e) => onCloseBtnClick(e)}>&times;</button>
                 {currentUser.uid !== selected.owner.id ? (
                     <MarkerView selected={selected} />
                 ) : (

@@ -89,6 +89,9 @@ const Map = () => {
             if(plusBtn){
                 setMapClick({lat : mapClick.latlng.lat, lng : mapClick.latlng.lng})
             }
+            if(selected){
+                setSelected(null); 
+            }
           }
         })
         return null

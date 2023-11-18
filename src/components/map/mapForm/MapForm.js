@@ -21,6 +21,8 @@ export const MapForm = ({ onSubmit, onClose, selected, setSelected }) => {
             .required('Required field'),
         description: yup
             .string()
+            .required('Required field')
+            .min(20, 'Description should be minimum 20 characters long')
             .max(235, 'Description can be a maximum of 235 characters long'),
         maxPeople: yup
             .number()

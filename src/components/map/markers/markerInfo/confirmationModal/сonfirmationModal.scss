@@ -49,3 +49,9 @@
         }
     }
 }
+
+@media(max-width:450px) {
+    .confirmation-modal {
+        width: 260px;
+    }
+}

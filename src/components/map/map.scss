@@ -1,24 +1,10 @@
 @import '../../styles/variables.scss';
-@import '../../styles/fonts.scss'; 
+@import '../../styles/fonts.scss';
 
 .global-map {
     width: 100vw;
     height: 100vh;
     z-index: 0;
-}
-
-.locate {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    z-index: 10;
-}
-
-.locate img {
-    width: 30px;
-    cursor: pointer;
 }
 
 .spinner-container {
@@ -30,6 +16,7 @@
 
 .btn-add,
 .btn-add-media {
+    position: fixed;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $white;
@@ -37,10 +24,17 @@
     border-width: 1;
     color: black;
     z-index: 10;
-    position: fixed;
     cursor: pointer;
     font-family: 'Signika Negative', sans-serif;
     border: 2px solid $gray-hover;
+}
+
+.btn-add-media {
+    background-color : transparent !important; 
+    img {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 .btn-add {
@@ -53,8 +47,7 @@
     align-items: center;
 }
 
-.btn-add.btn-active,
-.btn-add-media.btn-active {
+.btn-add.btn-active {
     background-color: $secondary-color;
 }
 
@@ -73,11 +66,8 @@
 
     .btn-add-media {
         display: block;
-        bottom: 100px;
+        bottom: 50px;
         left: 50%;
-        font-size: 30px;
-        width: 40px;
-        border-radius: 100%;
-        padding: 5px;
+        border: none; 
     }
 }

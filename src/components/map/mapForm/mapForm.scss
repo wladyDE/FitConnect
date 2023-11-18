@@ -30,7 +30,8 @@
     background-color: $white;
 }
 
-.css-13cymwt-control, .css-t3ipsp-control {
+.css-13cymwt-control,
+.css-t3ipsp-control {
     font-size: 16px;
     font-weight: 500;
 
@@ -144,6 +145,12 @@ label {
     }
 
     #description {
+        width: 260px;
+    }
+}
+
+@media(max-width:450px) {
+    .map-form {
         width: 260px;
     }
 }

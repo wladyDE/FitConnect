@@ -4,7 +4,6 @@
 .leaflet-popup-content-wrapper {
     font-family: "Signika Negative", sans-serif;
     font-weight: 500;
-    z-index: 10;
     padding: 0;
     background-color: $main-color !important;
     color: $white !important; 
@@ -54,6 +53,7 @@
     }
 
     &-progress {
+        margin-bottom: 5px;
         width: 30px;
         height: 30px;
         display: block;
@@ -85,7 +85,7 @@
     }
 
     .info-progress {
-        display: none;
+        margin-top: 5px;
     }
 }
 
@@ -94,57 +94,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 260px;
     }
 
     .info {
         flex-direction: column;
 
-        &__block-right,
-        &__block-left {
-            width: 100%;
-        }
-
         &__block-right {
             margin-top: 5px;
-        }
-    }
-
-    .gm-style-iw.gm-style-iw-c .map-form {
-        width: 170px;
-
-        .form-date,
-        .form-people,
-        .form-activity {
-            width: 150px;
-
-            label {
-                font-size: 12px;
-            }
-        }
-
-        .addTrainingBtn {
-            width: 150px;
-        }
-
-        #description {
-            width: 130px;
-        }
-    }
-
-    .gm-style-iw.gm-style-iw-c .confirmation-modal {
-        width: 170px;
-        padding: 10px;
-
-        p {
-            width: 150px;
-            text-align: center;
-            font-size: 12px;
-            margin: 10px 0;
-        }
-
-        .confirmation-modal__button {
-            font-size: 12px;
-            padding: 5px 10px;
         }
     }
 }

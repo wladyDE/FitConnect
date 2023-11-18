@@ -3,10 +3,11 @@ import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
 import GeolocationMarker from "./markers/geoMarker/GeolocationMarker";
 import Spinner from '../spinner/Spinner';
 import TrainingMarkers from "./markers/GoogleMapMarkers";
-
 import 'leaflet/dist/leaflet.css';
 import './map.scss';
 import GeoLocation from "./geoLocation/GeoLocation";
+import logoBlack from '../../ressources/img/logo_black.png';
+import logoOrange from '../../ressources/img/logo_orange.png';
 
 const Map = () => {
     const [position, setPosition] = useState([51.5134, 7.4686]);
@@ -67,7 +68,7 @@ const Map = () => {
 
     return (
         <>
-            <MapContainer center={position} zoom={13} className="global-map" onClick={onMapClick} ref={setMap}>
+            <MapContainer center={position} zoom={13} className="global-map" onClick={onMapClick} ref={setMap} zoomControl={false}>
                 <TileLayer
                     url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png"
                     attribution='&copy; Wikimedia'
@@ -82,7 +83,9 @@ const Map = () => {
             <GeoLocation map={map} position={position} />
 
             <button className={`btn btn-add ${plusBtn ? 'btn-active' : ''}`} onClick={onAddTrainingClick}>Add Training</button>
-            <button className={`btn btn-add-media ${plusBtn ? 'btn-active' : ''}`} onClick={onAddTrainingClick}>+</button>
+            <a className="btn-add-media" onClick={onAddTrainingClick}>
+                <img src={plusBtn ? logoOrange : logoBlack} alt="Add Training Btn" />
+            </a>
         </>
     );
 

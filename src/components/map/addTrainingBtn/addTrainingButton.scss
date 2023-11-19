@@ -1,0 +1,54 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/fonts.scss';
+
+.btn-add,
+.btn-add-media {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-color: $secondary-color;
+    border-width: 1;
+    color: black;
+    z-index: 10;
+    cursor: pointer;
+    font-family: 'Signika Negative', sans-serif;
+    border: 2px solid $gray-hover;
+}
+
+.btn-add {
+    bottom: 50px;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-add-media {
+    display: none;
+}
+
+.btn-add.btn-active {
+    background-color: $secondary-color;
+}
+
+@media(max-width:590px) {
+    .btn-add {
+        display: none;
+    }
+
+    .btn-add-media {
+        display: block;
+        bottom: 50px;
+        left: 50%;
+        border: none;
+        background-color: transparent !important;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+}

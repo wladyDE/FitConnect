@@ -6,8 +6,7 @@ import TrainingMarkers from "./markers/GoogleMapMarkers";
 import 'leaflet/dist/leaflet.css';
 import './map.scss';
 import GeoLocation from "./geoLocation/GeoLocation";
-import logoBlack from '../../ressources/img/logo_black.png';
-import logoOrange from '../../ressources/img/logo_orange.png';
+import AddTrainingButton from "./addTrainingBtn/AddTrainingButton";
 
 const Map = () => {
     const [position, setPosition] = useState([51.5134, 7.4686]);
@@ -56,11 +55,6 @@ const Map = () => {
         }
     }
 
-    const onAddTrainingClick = () => {
-        setPlusBtn(!plusBtn);
-        setSelected(null);
-    }
-
     if (isLoading)
         return (<div className="spinner-container">
             <Spinner />
@@ -80,12 +74,8 @@ const Map = () => {
 
             </MapContainer>
 
+            <AddTrainingButton plusBtn={plusBtn} setPlusBtn={setPlusBtn} setSelected={setSelected}/>
             <GeoLocation map={map} position={position} />
-
-            <button className={`btn btn-add ${plusBtn ? 'btn-active' : ''}`} onClick={onAddTrainingClick}>Add Training</button>
-            <a className="btn-add-media" onClick={onAddTrainingClick}>
-                <img src={plusBtn ? logoOrange : logoBlack} alt="Add Training Btn" />
-            </a>
         </>
     );
 

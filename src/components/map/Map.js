@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import './map.scss';
 import GeoLocation from "./geoLocation/GeoLocation";
 import AddTrainingButton from "./addTrainingBtn/AddTrainingButton";
+import MarkersFilter from "./markersFilter/MarkersFilter";
 
 const Map = () => {
     const [position, setPosition] = useState([51.5134, 7.4686]);
@@ -75,6 +76,7 @@ const Map = () => {
             </MapContainer>
 
             <AddTrainingButton plusBtn={plusBtn} setPlusBtn={setPlusBtn} setSelected={setSelected}/>
+            <MarkersFilter/>
             <GeoLocation map={map} position={position} />
         </>
     );

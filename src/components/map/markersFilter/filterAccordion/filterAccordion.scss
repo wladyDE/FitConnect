@@ -1,0 +1,13 @@
+@import '../../../../styles/variables.scss';
+
+.accordion {
+    position: fixed;
+    z-index: 80;
+    bottom: 118px;
+    right: 0;
+    list-style-type: none;
+    padding: 16px;
+    background-color: $main-color;
+    border-radius: 10px;
+    width: 83%;
+  }

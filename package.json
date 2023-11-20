@@ -21,6 +21,7 @@
     "react-select": "^5.7.4",
     "react-spring": "^9.7.3",
     "sass": "^1.64.2",
+    "styled-components": "^6.1.1",
     "use-places-autocomplete": "^4.0.0",
     "uuid": "^9.0.1",
     "yup": "^1.2.0"

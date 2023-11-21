@@ -11,7 +11,7 @@ import MarkersFilter from "./markersFilter/MarkersFilter";
 
 const Map = () => {
     const [position, setPosition] = useState([51.5134, 7.4686]);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
     const [plusBtn, setPlusBtn] = useState(false);
     const [mapClick, setMapClick] = useState(null);
     const [selected, setSelected] = useState(null);

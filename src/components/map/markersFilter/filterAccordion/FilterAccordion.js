@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { AccordionItem } from './accordionItem/AccordionItem';
-import TrainingFilter from '../trainingFilter/TrainingFilter';
+import TrainingFilter from '../filters/trainingFilter/TrainingFilter';
+import ParticipantsFilter from '../filters/participantsFilter/ParticipantsFilter';
 import './filterAccordion.scss';
+import DateFilter from '../filters/dateFilter/DateFilter';
 
 
 const FilterAccordion = () => {
@@ -10,42 +12,42 @@ const FilterAccordion = () => {
     let items = [
         {
             name: "Date",
-            content: <div>lit.mpedit. Consequatur tenetur esse architecto beatae dicta illo error ut maiores sed alias. Vel.</div>
+            content: <DateFilter />
         },
         {
             name: "Training",
-            content: <TrainingFilter/>
+            content: <TrainingFilter />
         },
         {
             name: "Participants",
-            content: <div>lit.mpedit. Consequatur tenetur es   </div>,
-            active : false
+            content: <ParticipantsFilter />
         }
     ]
 
     const handleClick = (index) => {
         const newActiveArr = activeArr.map((item, i) => {
-          if (i === index) {
-            return {
-              ...item,
-              active: !item.active,
-            };
-          }
-          return item;
+            if (i === index) {
+                return {
+                    ...item,
+                    active: !item.active,
+                };
+            }
+            return item;
         });
-      
+
         setActiveArr(newActiveArr);
-      };
+    };
 
     return (
         <div className='accordion'>
+            <h2 className="accordion-title">Filter by</h2>
             {items.map((item, index) => {
                 return (
                     <AccordionItem
-                      onClick={() => handleClick(index)}
-                      item={item}
-                      isActive={activeArr[index].active}
-                      key={index}
+                        onClick={() => handleClick(index)}
+                        item={item}
+                        isActive={activeArr[index].active}
+                        key={index}
                     />
                 );
             })}
@@ -55,13 +57,13 @@ const FilterAccordion = () => {
 
 let itemsActive = [
     {
-        active : false
+        active: false
     },
     {
-        active : false
+        active: false
     },
     {
-        active : false
+        active: false
     }
 ]
 

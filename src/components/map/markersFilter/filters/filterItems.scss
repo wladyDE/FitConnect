@@ -1,23 +1,22 @@
 @import '../../../../styles/variables.scss';
 
-.filter-trainings {
+.filter-items {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  }
-  
-  .filter-training {
+}
+
+.filter-item {
     border: 2px solid $white;
     color: $white;
     border-radius: 20px;
     padding: 8px 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  
+
     &:hover {
-      background-color: $secondary-color;
+        background-color: $secondary-color;
     }
-  }
-  
+}

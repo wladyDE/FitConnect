@@ -10,4 +10,10 @@
     background-color: $main-color;
     border-radius: 10px;
     width: 83%;
+
+    &-title{
+      color: $white; 
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
   }

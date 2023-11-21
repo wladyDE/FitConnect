@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { AccordionItem } from './accordionItem/AccordionItem';
-import TrainingFilter from '../filters/trainingFilter/TrainingFilter';
-import ParticipantsFilter from '../filters/participantsFilter/ParticipantsFilter';
+import MapFilter from '../filters/MapFilter';
+import { participants, trainings, dates } from '../filters/filterData';
 import './filterAccordion.scss';
-import DateFilter from '../filters/dateFilter/DateFilter';
 
 
 const FilterAccordion = () => {
@@ -12,15 +11,15 @@ const FilterAccordion = () => {
     let items = [
         {
             name: "Date",
-            content: <DateFilter />
+            content: <MapFilter items={dates} />
         },
         {
             name: "Training",
-            content: <TrainingFilter />
+            content: <MapFilter items={trainings}/>
         },
         {
             name: "Participants",
-            content: <ParticipantsFilter />
+            content: <MapFilter items={participants}/>
         }
     ]
 

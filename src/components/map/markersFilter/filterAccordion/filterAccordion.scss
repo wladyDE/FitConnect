@@ -4,16 +4,22 @@
     position: fixed;
     z-index: 80;
     bottom: 118px;
-    right: 0;
+    right: -90%;
     list-style-type: none;
     padding: 16px;
     background-color: $main-color;
     border-radius: 10px;
     width: 83%;
+    transition: all ease-in 0.5s;
 
     &-title{
       color: $white; 
       margin-bottom: 10px;
       font-size: 22px;
     }
+  }
+
+  .accordion.show{
+    right: 0;
+    transition: all ease-out 0.5s;
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet';
 import GeolocationMarker from "./markers/geoMarker/GeolocationMarker";
 import Spinner from '../spinner/Spinner';
-import TrainingMarkers from "./markers/GoogleMapMarkers";
+import TrainingMarkers from "./markers/TrainingMarkers";
 import 'leaflet/dist/leaflet.css';
 import './map.scss';
 import GeoLocation from "./geoLocation/GeoLocation";
@@ -15,7 +15,8 @@ const Map = () => {
     const [plusBtn, setPlusBtn] = useState(false);
     const [mapClick, setMapClick] = useState(null);
     const [selected, setSelected] = useState(null);
-    const [map, setMap] = useState(null)
+    const [map, setMap] = useState(null);
+    const [filter, setFilter] = useState([]);
 
     useEffect(() => {
         getGeoLocation();
@@ -71,12 +72,19 @@ const Map = () => {
                 <MyComponent />
 
                 <GeolocationMarker position={position} />
-                <TrainingMarkers mapClick={mapClick} plusBtn={plusBtn} setPlusBtn={setPlusBtn} selected={selected} setSelected={setSelected} />
+                <TrainingMarkers
+                    mapClick={mapClick}
+                    plusBtn={plusBtn}
+                    setPlusBtn={setPlusBtn}
+                    selected={selected}
+                    setSelected={setSelected}
+                    filter={filter}
+                />
 
             </MapContainer>
 
-            <AddTrainingButton plusBtn={plusBtn} setPlusBtn={setPlusBtn} setSelected={setSelected}/>
-            <MarkersFilter/>
+            <AddTrainingButton plusBtn={plusBtn} setPlusBtn={setPlusBtn} setSelected={setSelected} />
+            <MarkersFilter filter={filter} setFilter={setFilter} />
             <GeoLocation map={map} position={position} />
         </>
     );

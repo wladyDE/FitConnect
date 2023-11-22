@@ -55,7 +55,7 @@ export const dates = [
         isActive: false
     },
     {
-        value: "Day after tomorrow",
+        value: "Within 7 days",
         filter: 'date',
         isActive: false
     }

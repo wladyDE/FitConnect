@@ -56,3 +56,7 @@
 .accordion-arrow.active {
   transform: translateY(-50%) rotate(180deg);
 }
+
+.accordion-arrow.orange {
+  fill: $secondary-color; 
+}

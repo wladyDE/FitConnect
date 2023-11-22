@@ -16,16 +16,16 @@ import {
 } from '../../../service/MarkerService';
 import { useTransition, animated } from 'react-spring';
 import { animation } from '../../../utils/utils';
+import { filterMarkers } from './utils';
 import ReactDOM from 'react-dom';
 
-const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn }) => {
+const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn, filter }) => {
   const [markers, setMarkers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const [tempMarker, setTempMarker] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const formTransition = useTransition(showForm, animation);
-
 
   useEffect(() => {
     const unsubscribe = loadMarkersFromDatabase((updatedMarkers) => {
@@ -98,9 +98,11 @@ const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn 
     )
   }, [plusBtn, mapClick]);
 
+  const currentMarkers = filterMarkers(filter, markers); 
+
   return (
     <>
-      {markers.map((marker, index) => {
+      {currentMarkers.map((marker, index) => {
         const training = trainings.find(t => t.activityType === marker.activityType);
         const iconUrl = training ? training.icon : null;
         const position = [marker.lat, marker.lng]

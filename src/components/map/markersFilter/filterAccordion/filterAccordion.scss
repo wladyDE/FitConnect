@@ -1,25 +1,50 @@
 @import '../../../../styles/variables.scss';
 
 .accordion {
-    position: fixed;
-    z-index: 80;
-    bottom: 118px;
-    right: -90%;
-    list-style-type: none;
-    padding: 16px;
-    background-color: $main-color;
-    border-radius: 10px;
-    width: 83%;
-    transition: all ease-in 0.5s;
+  position: fixed;
+  z-index: 80;
+  bottom: 118px;
+  right: -90%;
+  list-style-type: none;
+  padding: 16px;
+  background-color: $main-color;
+  border-radius: 10px;
+  width: 83%;
+  opacity: 0;
+  transition: all ease-in 0.7s;
 
-    &-title{
-      color: $white; 
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
+  &-title {
+    color: $white;
+    margin-bottom: 10px;
+    font-size: 22px;
   }
+}
 
-  .accordion.show{
-    right: 0;
-    transition: all ease-out 0.5s;
+.accordion.show {
+  opacity: 1;
+  right: 0;
+  transition: all ease-out 0.7s;
+}
+
+.filter-close-button {
+  position: absolute;
+  top: 0;
+  right: 7px;
+  background: none;
+  border: none;
+  font-size: 25px;
+  line-height: 1;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    color: $gray;
   }
+}
+
+.filter-reset-btn{
+  background: $white; 
+  border-radius: 10px; 
+  padding: 7px;
+  cursor: pointer;
+}

@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './filterItems.scss';
 import { capitalizeFirstLetter } from '../../../../utils/utils'
 
-const MapFilter = ({ items, filter, setFilter, activeArr, setActiveArr }) => {
+const MapFilter = ({ items, filter, setFilter, activeArr, setActiveArr, isReset, setIsReset }) => {
     const [activeFilters, setActiveFilters] = useState(items);
+
+    useEffect(() => {
+        if (isReset) {
+            setActiveFilters(activeFilters.map(item => ({ ...item, isActive: false })));
+            setIsReset(prev => !prev)
+        }
+    }, [isReset]);
 
     const handleClick = (index) => {
         // update Filters in Accordion

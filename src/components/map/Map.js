@@ -10,7 +10,7 @@ import AddTrainingButton from "./addTrainingBtn/AddTrainingButton";
 import MarkersFilter from "./markersFilter/MarkersFilter";
 
 const Map = () => {
-    const [position, setPosition] = useState([51.5134, 7.4686]);
+    const [position, setPosition] = useState(null);
     const [isLoading, setLoading] = useState(false);
     const [plusBtn, setPlusBtn] = useState(false);
     const [mapClick, setMapClick] = useState(null);
@@ -19,6 +19,7 @@ const Map = () => {
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {
+        setLoading(true); 
         getGeoLocation();
     }, []);
 
@@ -84,7 +85,7 @@ const Map = () => {
             </MapContainer>
 
             <AddTrainingButton plusBtn={plusBtn} setPlusBtn={setPlusBtn} setSelected={setSelected} />
-            <MarkersFilter filter={filter} setFilter={setFilter} />
+            <MarkersFilter filter={filter} setFilter={setFilter} setSelected={setSelected} />
             <GeoLocation map={map} position={position} />
         </>
     );

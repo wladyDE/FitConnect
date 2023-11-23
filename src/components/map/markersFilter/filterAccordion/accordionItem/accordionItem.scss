@@ -62,3 +62,33 @@
 .accordion-arrow.orange {
   fill: $secondary-color; 
 }
+
+@media(max-width:590px) {
+  .accordion-header {
+    font-size: 14px;
+  }
+
+  .accordion-body {
+    font-size: 12px;
+  }
+
+  .accordion-arrow {
+    width: 15px;
+    height: 9px;
+  }
+}
+
+@media(max-width:450px) {
+  .accordion-header {
+    font-size: 13px;
+  }
+
+  .accordion-body {
+    font-size: 11px;
+  }
+
+  .accordion-arrow {
+    width: 14px;
+    height: 8px;
+  }
+}

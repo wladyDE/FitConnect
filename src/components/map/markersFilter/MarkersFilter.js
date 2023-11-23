@@ -4,7 +4,7 @@ import filterImgOrange from '../../../ressources/img/filter_orange.png';
 import FilterAccordion from './filterAccordion/FilterAccordion';
 import './markersFilter.scss';
 
-const MarkersFilter = ({ filter, setFilter }) => {
+const MarkersFilter = ({ filter, setFilter, setSelected }) => {
     const [showFilter, setShowFilter] = useState(false);
     const [activeArr, setActiveArr] = useState(itemsActive);
 
@@ -16,9 +16,14 @@ const MarkersFilter = ({ filter, setFilter }) => {
         })
     }, [activeArr]);
 
+    const onFilterBtnClick = () => {
+        setSelected(null); 
+        setShowFilter(!showFilter);
+    }
+
     return (
         <>
-            <a className="filter-btn" onClick={() => setShowFilter(!showFilter)}>
+            <a className="filter-btn" onClick={() => onFilterBtnClick()}>
                 <img src={getImage(activeArr)} title="Filter" alt="Filter for Trainingsmarkers" />
             </a>
             <FilterAccordion

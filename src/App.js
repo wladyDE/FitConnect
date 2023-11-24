@@ -1,10 +1,10 @@
-import Register from './pages/login&register/Register';
-import Login from './pages/login&register/Login'
-import Search from './pages/search/Search'
+import RegisterPage from './pages/login&register/RegisterPage';
+import LoginPage from './pages/login&register/LoginPage'
+import MapPage from './pages/MapPage'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
-import Settings from './pages/settings/Settings';
+import SettingsPage from './pages/SettingsPage';
 import ChatPage from './pages/chat/ChatPage';
 import Groups from './pages/groups/Groups';
 import './styles/style.scss';
@@ -28,11 +28,11 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<ProtectedRoute>
-                                  <Search />
+                                  <MapPage />
                                 </ProtectedRoute>} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="settings" element={<SettingsPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="groups" element={<Groups />} />
 

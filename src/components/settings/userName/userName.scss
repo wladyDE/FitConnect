@@ -1,0 +1,27 @@
+.user__name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &-title {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    &-input {
+        padding: 7px;
+        background-color: #eaeef1;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    &-img {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+
+        &-accept{
+            margin-right: 5px;
+        }
+    }
+}

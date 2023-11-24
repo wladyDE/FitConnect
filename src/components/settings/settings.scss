@@ -1,27 +1,10 @@
 @import '../../styles/variables.scss'; 
-
-  .userphoto {
-    display: flex;
-    justify-content: center; /* Horizontal zentrieren */
-    align-items: center; /* Vertikal zentrieren */
-    flex: 1; /* Der Bereich zwischen Sidebar und Bild nimmt den verfügbaren Raum ein */
+  .settings{
+    padding: 30px 0 0 17%;
   }
   
   .centered-image-container {
     text-align: center; /* Zentriere den Inhalt horizontal */
-  }
-
-  .userphoto label{
-    cursor: pointer;
-  }
-  
-  .user-photo-settings {
-    max-width: 200px; /* Maximalbreite des Bildes */
-    max-height: 200px; /* Maximale Höhe des Bildes */
-    width: 100%; /* Das Bild wird die Breite des Containers einnehmen */
-    height: auto; /* Das Bild passt die Höhe entsprechend der Breite an */
-    border-radius: 50%;
-    padding-top: 25px;
   }
 
   .profile-form {

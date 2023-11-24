@@ -24,10 +24,6 @@ const Register = () => {
         displayName: username,
       });
 
-      // const defaultImageURL = user; // Hier den URL des Standardbilds einfügen
-      // const storage = storageRef(storage, `avatars/${res.user.uid}`);
-      // await uploadBytes(storage, defaultImageURL);
-
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         displayName: username,

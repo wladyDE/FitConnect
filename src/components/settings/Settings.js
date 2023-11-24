@@ -1,22 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import SideBar from "../../components/sideBar/SideBar";
 import React, { useState, useEffect, useContext } from 'react';
-import userPhoto from '../../ressources/img/user.png'
 import { AuthContext } from '../../context/AuthContext';
-import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, setDoc} from "firebase/firestore";
 import './settings.scss';
 import { updateProfile, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { signOut } from "firebase/auth";
-import { auth, storage, db } from '../../config/firebase';
+import { auth, db } from '../../config/firebase';
 import { updatePassword } from "firebase/auth";
 import 'firebase/auth';
 import 'firebase/storage';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import UserPhoto from "./userPhoto/UserPhoto";
+import UserName from "./userName/UserName";
 
 const Settings = () => {
-  const [imageUrl, setImageUrl] = useState(userPhoto);
   const { currentUser } = useContext(AuthContext);
-  const [DisplayName, setDisplayName] = useState(currentUser?.displayName || '');
   const [Email, setEmail] = useState(currentUser?.email || '');
   const [err, setErr] = useState(false);
   const [firstName, setFirstName] = useState(currentUser?.firstName || '');
@@ -66,7 +63,6 @@ const Settings = () => {
 
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
-        displayName,
         email,
         firstName,
         lastName
@@ -80,36 +76,6 @@ const Settings = () => {
     }
   };
 
-
-
-  const handleImageChange = async (e) => {
-    console.log('10')
-    if (e.target.files[0]) {
-
-      const storageRef = ref(storage, `avatars/${currentUser.uid}`);
-      const uploadTask = await uploadBytesResumable(storageRef, e.target.files[0]);
-      const downloadURL = await getDownloadURL(uploadTask.ref);
-
-      console.log('1')
-
-      // Aktualisieren Sie die Firestore-Daten des Benutzers, einschließlich 'photoURL'
-      const userDocRef = doc(db, "users", currentUser.uid);
-      await updateDoc(userDocRef, {
-        photoURL: downloadURL
-
-      });
-      console.log('2')
-
-      // Aktualisieren Sie das Benutzerprofil in Firebase Authentication
-      await updateProfile(auth.currentUser, { photoURL: downloadURL });
-
-      // Aktualisieren Sie das Bild-URL im State oder wo auch immer Sie es verwenden
-      setImageUrl(downloadURL);
-
-    }
-  };
-
-
   useEffect(() => {
     if (currentUser && currentUser.uid) {
       const docRef = doc(db, "users", currentUser.uid);
@@ -119,14 +85,8 @@ const Settings = () => {
           setFirstName(data.firstName || ''); // Updating firstName
           setLastName(data.lastName || ''); // Updating lastName
           setEmail(data.email || ''); // Updating lastName
-          setDisplayName(data.displayName || ''); // Updating lastName
-
         }
       });
-
-      if (currentUser?.photoURL) {
-        setImageUrl(currentUser.photoURL);
-      }
 
       return () => {
         unsubscribe();
@@ -138,14 +98,8 @@ const Settings = () => {
   return (
 
     <div className="settings">
-
-      <SideBar />
-      <div className="userphoto">
-        <input style={{ display: "none" }} type="file" id="cs" onChange={(e) => handleImageChange(e)} />
-        <label id="cs" htmlFor="cs">
-          <img src={imageUrl} alt="userPhoto" type="file" className="user-photo-settings" />
-        </label>
-      </div>
+      <UserName/>
+      <UserPhoto/>
       <div className="profile-form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -155,10 +109,6 @@ const Settings = () => {
           <div className="form-group">
             <label htmlFor="lastName">lastName</label>
             <input type="text" id="lastName" name="lastName" placeholder="Neuer Nachname" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="username">displayName</label>
-            <input type="text" placeholder="Neuer Benutzername" id="username" name="username" value={DisplayName} onChange={(e) => setDisplayName(e.target.value)} />
           </div>
           <div className="form-group">
             <label htmlFor="email">E-Mail</label>
@@ -181,8 +131,6 @@ const Settings = () => {
       </div>
       <button className="signout" onClick={() => { signOut(auth); navigate("/"); }}>Ausloggen</button>
     </div>
-
-
   );
 }
 

@@ -18,8 +18,9 @@ const SideBar = () => {
     const { currentUser } = useContext(AuthContext);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [imageUrl, setImageUrl] = useState(userPhoto);
+    const [userName, setUserName] = useState(currentUser.displayName);
     const [notificationsAnimation, setNotificationsAnimation] = useState(false);
-    
+
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -39,11 +40,15 @@ const SideBar = () => {
             const userUnsubscribe = onSnapshot(userDocRef, (docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const userData = docSnapshot.data();
-                    if (userData.photoURL) {
+                    if(userData.photoURL){
                         setImageUrl(userData.photoURL);
+                    }                   
+                    if(userData.displayName){
+                        setUserName(userData.displayName);
                     }
                 }
             });
+            console.log(currentUser.displayName);
 
             return () => { };
         }
@@ -87,7 +92,7 @@ const SideBar = () => {
                                 <img src={imageUrl} alt="userPhoto" type="file" className="user-photo" />
                             </label>
                         </div>
-                        <p className="user-name">{currentUser?.displayName}</p>
+                        <p className="user-name">{userName}</p>
                         <div className="notifications">
                             <img className="notifications" src={event} onClick={onNotificationsClick} alt="notifications" />
                             {(newNotifications !== null && newNotifications > 0) && (
@@ -101,11 +106,7 @@ const SideBar = () => {
                                 <li
                                     key={key}
                                     className={`row ${window.location.pathname === val.link ? 'active' : ''}`}
-                                    onClick={() => {
-                                        console.log(window.location.pathname)
-                                        console.log(val.link);
-                                        window.location.pathname = val.link;
-                                    }}
+                                    onClick={() => { window.location.pathname = val.link; }}
                                 >
                                     <div id="icon">{val.icon}</div>
                                     <div id="title">{val.title}</div>

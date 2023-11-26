@@ -1,0 +1,35 @@
+@import '../../../../styles/variables.scss'; 
+
+.user__description{
+    display: flex;
+    align-items: center; 
+    cursor: pointer;
+
+    &-btn{
+        padding: 7px;
+        background-color: rgb(153, 153, 153);
+        color: $white;
+        border-radius: 10px;  
+        font-size: 14px;
+
+        &:hover{
+            background-color: rgb(133, 133, 133);
+        }
+    }
+
+    &-info{
+        margin-right: 5px;
+        max-width: 325px;
+    }
+
+    &-text{
+        width: 100%;
+        background: $white; 
+        padding: 8px;
+        color: black;
+        margin-right: 5px;
+        height: 60px;
+        border: 2px solid $main-color;
+        border-radius: 10px; 
+    }
+}

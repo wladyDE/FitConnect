@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss'; 
+
 .user__name {
     display: flex;
     align-items: center;
@@ -9,10 +11,14 @@
     }
 
     &-input {
+        width: 100%;
         padding: 7px;
         background-color: #eaeef1;
         border-radius: 5px;
         margin-right: 10px;
+        background: $white;
+        color: black;
+        border: 2px solid $main-color;
     }
 
     &-img {
@@ -20,7 +26,7 @@
         width: 20px;
         height: 20px;
 
-        &-accept{
+        &-accept {
             margin-right: 5px;
         }
     }

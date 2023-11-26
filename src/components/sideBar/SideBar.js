@@ -13,14 +13,14 @@ import { db } from "../../config/firebase";
 
 
 const SideBar = () => {
+    const { currentUser } = useContext(AuthContext);
     const [showNotifications, setShowNotifications] = useState(false);
     const [newNotifications, setNewNotifications] = useState(null);
-    const { currentUser } = useContext(AuthContext);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [imageUrl, setImageUrl] = useState(userPhoto);
+    const userImg = currentUser.photoURL ? currentUser.photoURL : userPhoto;
+    const [imageUrl, setImageUrl] = useState(userImg);
     const [userName, setUserName] = useState(currentUser.displayName);
     const [notificationsAnimation, setNotificationsAnimation] = useState(false);
-
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -48,7 +48,6 @@ const SideBar = () => {
                     }
                 }
             });
-            console.log(currentUser.displayName);
 
             return () => { };
         }

@@ -1,0 +1,16 @@
+.user__info{
+    margin-left: 30px;
+
+    &-statistik{
+        display: flex;
+        margin-bottom: 10px;
+
+        p{
+            font-size: 18px;
+        }
+
+        p:not(:last-child){
+            margin-right: 20px;
+        }
+    }
+}

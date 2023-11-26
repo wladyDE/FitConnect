@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from '../../../../context/AuthContext';
 import { updateProfile } from "firebase/auth";
-import { db } from '../../../config/firebase';
-import { doc, setDoc} from "firebase/firestore";
-import Edit from '../../../ressources/img/edit.png';
-import Cancel from '../../../ressources/img/cancel.png';
-import Accept from '../../../ressources/img/accept.png';
+import { db } from '../../../../config/firebase';
+import { doc, setDoc } from "firebase/firestore";
+import Edit from '../../../../ressources/img/edit.png';
+import Cancel from '../../../../ressources/img/cancel.png';
+import Accept from '../../../../ressources/img/accept.png';
 import './userName.scss';
 
 const UserName = () => {
@@ -31,7 +31,7 @@ const UserName = () => {
     const NameView = () => {
         return <div className="user__name">
             <h2 className='user__name-title'>{userName}</h2>
-            <img src={Edit} className='user__name-img' alt="edit" onClick={() => setEdit(true)} />
+            <img src={Edit} className='user__name-img' title='change username' alt="edit" onClick={() => setEdit(true)} />
         </div>
     }
 

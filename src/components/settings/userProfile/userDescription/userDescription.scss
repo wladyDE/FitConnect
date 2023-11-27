@@ -4,6 +4,7 @@
     display: flex;
     align-items: center; 
     cursor: pointer;
+    color: $main-color; 
 
     &-btn{
         padding: 7px;
@@ -21,6 +22,7 @@
     &-info{
         margin-right: 5px;
         max-width: 325px;
+        color: $main-color
     }
 
     &-text{

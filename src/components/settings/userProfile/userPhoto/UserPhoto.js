@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import { doc, updateDoc} from "firebase/firestore"
-import { auth, storage, db } from '../../../config/firebase';
+import { auth, storage, db } from '../../../../config/firebase';
 import { updateProfile } from "firebase/auth";
-import { AuthContext } from '../../../context/AuthContext';
-import userPhoto from '../../../ressources/img/user.png'
+import { AuthContext } from '../../../../context/AuthContext';
+import userPhoto from '../../../../ressources/img/user.png'
 import './userPhoto.scss';
 
 const UserPhoto = () => {

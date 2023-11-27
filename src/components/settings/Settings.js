@@ -1,29 +1,52 @@
-import { useNavigate } from "react-router-dom";
-import './settings.scss';
-
-import { signOut } from "firebase/auth";
-import { auth} from '../../config/firebase';
 import 'firebase/auth';
 import 'firebase/storage';
-import UserPhoto from "./userPhoto/UserPhoto";
-import UserInfo from "./userInfo/UserInfo";
 import UserPassword from "./userPassword/UserPassword";
+import SignOut from './signOut/SignOut';
+import UserProfile from './userProfile/UserProfile';
+import { useState } from 'react';
+import { AccordionItem } from '../accordionItem/AccordionItem';
+import './settings.scss';
+
+const accordionItems = [
+    {
+        name : 'Profile',
+        content : <UserProfile />
+    }, 
+    {
+        name : 'Change Password',
+        content :  <UserPassword />
+    }, 
+    {
+        name : 'SignOut',
+        content :  <SignOut />
+    }
+]
+
+const activeAccordionItems = [false, false, false]; 
 
 const Settings = () => {
-  const navigate = useNavigate();
+    const [activeItems, setActiveItems] = useState(activeAccordionItems);
 
-  return (
+    const onAccordionItemClick = (index) => {
+        const newActiveItems = activeItems.map((item, i) => i === index ? !item : item);
+        setActiveItems(newActiveItems);
+    };
 
-    <div className="settings">
-      <div className="settings-profile">
-        <UserPhoto />
-        <UserInfo />
-      </div>
-
-      <UserPassword />
-      <button className="signout" onClick={() => { signOut(auth); navigate("/"); }}>Ausloggen</button>
-    </div>
-  );
+    return (
+        <div className="settings">
+            <h2 className="settings-title">Settings</h2>
+            {accordionItems.map((item, index) => {
+                return (
+                    <AccordionItem
+                        onClick={() => onAccordionItemClick(index)}
+                        item={item}
+                        isActive={activeItems[index]}
+                        key={index}
+                    />
+                );
+            })}
+        </div>
+    );
 }
 
 export default Settings;

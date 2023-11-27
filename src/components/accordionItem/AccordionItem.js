@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { ReactComponent as ArrowIcon } from "../../../../../ressources/img/arrow-icon.svg";
-import './accordionItem.scss'
+import { ReactComponent as ArrowIcon } from "../../ressources/img/arrow-icon.svg";
+import './accordionItem.scss';
 
 export const AccordionItem = ({ item, onClick, isActive, isArrowIconActive }) => {
   const itemRef = useRef(null);

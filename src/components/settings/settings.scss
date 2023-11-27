@@ -1,29 +1,23 @@
 @import '../../styles/variables.scss';
 
 .settings {
-  padding: 30px 0 0 17%;
-  background: url('../../ressources/img/settings_bg.jpg') no-repeat center center;
+  padding: 30px 20px 0 17%;
   background-size: cover;
   height: 100vh;
   box-sizing: border-box;
+  list-style-type: none;
+  background-color: $main-color;
+  border-radius: 10px;
+  transition: all ease-in 0.7s;
 
   &-profile {
     display: flex;
     align-items: center;
   }
-}
 
-
-.signout {
-  margin-top: 20px;
-  padding: 7px 12px;
-  background-color: rgb(153, 153, 153);
-  color: $white;
-  border-radius: 10px;
-  font-size: 14px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgb(133, 133, 133);
+  &-title {
+    color: $white;
+    margin-bottom: 10px;
+    font-size: 22px;
   }
 }

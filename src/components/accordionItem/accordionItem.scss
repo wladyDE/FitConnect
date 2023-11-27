@@ -1,4 +1,4 @@
-@import '../../../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .accordion-item {
   border-radius: 5px;
@@ -34,13 +34,12 @@
 
 .accordion-body {
   padding: 20px 60px 20px 30px;
-//  background-color: rgb(160, 159, 159);
+  background: url('../../ressources/img/settings_bg.jpg') no-repeat center center;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   font-size: 14px;
   color: $white;
-  background: url('../../../../../ressources//img/bg.png') no-repeat center center;
-  background-size: cover;
+   background-size: cover;
 }
 
 .accordion-arrow {

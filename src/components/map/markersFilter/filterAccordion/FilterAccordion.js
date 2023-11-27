@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AccordionItem } from './accordionItem/AccordionItem';
+import { AccordionItem } from '../../../accordionItem/AccordionItem';
 import MapFilter from '../filters/MapFilter';
 import { participants, trainings, dates } from '../filters/filterData';
 import './filterAccordion.scss';

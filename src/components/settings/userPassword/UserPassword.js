@@ -9,7 +9,8 @@ const UserPassword = () => {
     const [newPassword, setNewPassword] = useState('');
     const [newPassword2, setNewPassword2] = useState('');
 
-    const onChangePasswort = async () => {
+    const onChangePasswort = async (event) => {
+        event.preventDefault();
         try {
             const user = auth.currentUser;
             const credential = EmailAuthProvider.credential(user.email, currentPassword);
@@ -21,15 +22,15 @@ const UserPassword = () => {
             alert('Passwort was successfully changed!');
             setCurrentPassword('');
             setNewPassword('');
+            setNewPassword2(''); 
         } catch (error) {
-            alert('fsdfasdf')
+            alert('Error!')
             console.log(error);
         }
     };
 
     return (
         <div className='user__password'>
-            <h2 className='user__password-title'>Change password</h2>
             <form className='user__password-form'>
                 <PasswordInput
                     htmlFor="currentPassword"
@@ -56,7 +57,7 @@ const UserPassword = () => {
                     setPassword={setNewPassword2}
                 />
 
-                <button className="user__password-btn-update" onClick={onChangePasswort}>
+                <button className="user__password-btn-update" type="submit" onClick={(e) => onChangePasswort(e)}>
                     Change passwort
                 </button>
             </form>

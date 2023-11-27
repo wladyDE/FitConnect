@@ -1,6 +1,6 @@
-import { ChatSideBar } from "../../components/Chat/ChatSideBar";
+import { ChatSideBar } from "../../components/chat/ChatSideBar";
 import SideBar from "../../components/sideBar/SideBar";
-import { Chat } from "../../components/Chat/Chat";
+import { Chat } from "../../components/chat/Chat";
 import './ChatPage.scss';
 import { useState } from "react";
 

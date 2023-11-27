@@ -22,6 +22,7 @@
     &-info{
         margin-right: 5px;
         max-width: 325px;
+        word-wrap: break-word;
         color: $main-color
     }
 
@@ -34,5 +35,13 @@
         height: 60px;
         border: 2px solid $main-color;
         border-radius: 10px; 
+    }
+}
+
+@media(max-width:450px) {
+    .user__description{    
+        &-info{
+            max-width: 260px;
+        }
     }
 }

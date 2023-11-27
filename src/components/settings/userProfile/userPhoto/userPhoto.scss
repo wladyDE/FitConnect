@@ -16,7 +16,30 @@
         object-fit: cover;
     }
 
-    &-message{
-        color: green; 
+    &-message {
+        color: green;
+    }
+}
+
+@media(max-width:590px) {
+    .user__photo {
+        width: 100px;
+
+        &-img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+
+@media(max-width:450px) {
+    .user__photo {
+        width: 80px;
+
+        &-img {
+            width: 80px;
+            height: 80px;
+        }
     }
 }

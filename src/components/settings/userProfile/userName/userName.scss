@@ -1,4 +1,4 @@
-@import '../../../../styles/variables.scss'; 
+@import '../../../../styles/variables.scss';
 
 .user__name {
     display: flex;
@@ -8,7 +8,7 @@
     &-title {
         font-size: 24px;
         margin-right: 10px;
-        color: $main-color; 
+        color: $main-color;
     }
 
     &-input {
@@ -29,6 +29,27 @@
 
         &-accept {
             margin-right: 5px;
+        }
+    }
+}
+
+
+@media(max-width:590px) {
+
+    .user__name {
+        &-title {
+            font-size: 18px;
+        }
+    }
+}
+
+@media(max-width:450px) {
+
+    .user__name {
+        margin-top: 10px;
+
+        &-title {
+            font-size: 16px;
         }
     }
 }

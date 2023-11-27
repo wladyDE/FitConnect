@@ -21,3 +21,14 @@
     font-size: 22px;
   }
 }
+
+@media(max-width:590px) {
+
+  .settings {
+    padding: 30px 15px 0 15px;
+
+    &-title {
+      font-size: 20px;
+    }
+  }
+}

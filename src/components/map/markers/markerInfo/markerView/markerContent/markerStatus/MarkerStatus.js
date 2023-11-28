@@ -1,6 +1,6 @@
-import waiting from '../../../../../../ressources/img/waiting.png'
-import accept from '../../../../../../ressources/img/check-green.png';
-import reject from '../../../../../../ressources/img/reject.png';
+import waiting from '../../../../../../../ressources/img/waiting.png'
+import accept from '../../../../../../../ressources/img/check-green.png';
+import reject from '../../../../../../../ressources/img/reject.png';
 import './markerStatus.scss';
 
 const MarkerStatus = ({ message, src }) => (

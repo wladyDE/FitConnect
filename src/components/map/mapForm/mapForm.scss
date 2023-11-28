@@ -150,7 +150,7 @@ label {
 }
 
 @media(max-width:450px) {
-    .map-form {
+    .leaflet-popup-content .map-form {
         width: 260px;
     }
 }

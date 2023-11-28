@@ -1,5 +1,5 @@
-@import '../../../../../styles/variables.scss';
-@import '../../../../../styles/fonts.scss';
+@import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/fonts.scss';
 
 .leaflet-popup-content-wrapper {
     font-family: "Signika Negative", sans-serif;
@@ -41,10 +41,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 40%;
     }
 
     &__block-left {
         margin-right: 15px;
+        width: 60%;
     }
 
     &-activity {
@@ -66,6 +68,10 @@
 
     &-people {
         margin-top: 10px;
+    }
+
+    &-description{
+        word-wrap: break-word;
     }
 }
 
@@ -102,6 +108,14 @@
 
         &__block-right {
             margin-top: 5px;
+        }
+
+        &__block-right {
+            width: 100%;
+        }
+    
+        &__block-left {
+            width: 100%;
         }
     }
 }

@@ -28,7 +28,9 @@ const Register = () => {
         displayName: username,
         email,
         photoURL: user,
-        description: ''
+        description: '',
+        followers : 0,
+        following : 0
       });
 
       await setDoc(doc(db, "userMarkers", res.user.uid), { markers: [] });

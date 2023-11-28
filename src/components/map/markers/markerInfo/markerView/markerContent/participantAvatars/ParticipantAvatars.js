@@ -1,7 +1,13 @@
-import defaultUserPhoto from '../../../../../../ressources/img/user.png';
+import defaultUserPhoto from '../../../../../../../ressources/img/user.png';
 import './participantAvatars.scss'; 
 
-const ParticipantAvatars = ({ participants}) => {
+const ParticipantAvatars = ({ participants, setView}) => {
+    const onProfileFotoClick = (e, participant) => {
+      e.stopPropagation();
+      setView(participant.id)
+    }
+
+
     return (
       <div className="info-people-imgs">
         {participants.slice(0, 10).map((participant, index) => {
@@ -13,6 +19,7 @@ const ParticipantAvatars = ({ participants}) => {
               src={src} 
               title={participant.name} 
               className='info-people-img' 
+              onClick={(e) => onProfileFotoClick(e, participant)}
             />
           );
         })}

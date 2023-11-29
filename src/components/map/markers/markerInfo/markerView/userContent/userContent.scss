@@ -1,3 +1,5 @@
+@import '../../../../../../styles/variables.scss';
+
 .marker__user{
     display: flex;
 
@@ -13,8 +15,14 @@
         margin-right: 20px;
     }
 
+    &-main{
+        display: flex;
+        align-items: center;
+    }
+
     &-title{
         font-size: 18px;
+        margin-right: 10px;
     }
 
     &-statistik{
@@ -34,6 +42,30 @@
 
     &-description{
         margin-top: 10px;
+    }
+}
+
+.follow{
+    padding: 2px 10px;
+    border-radius: 10px; 
+    cursor: pointer;
+}
+
+.follow-btn{
+    background: $secondary-color;
+    color: $white; 
+
+    &:hover{
+        background: $orange-hover; 
+    }
+}
+
+.unfollow-btn{
+    background: rgb(194, 194, 194); 
+    color: $main-color; 
+
+    &:hover{
+        background: rgb(168, 168, 168);
     }
 }
 

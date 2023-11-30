@@ -3,7 +3,8 @@ import {
     doc,
     updateDoc,
     getDoc,
-    getDocs, 
+    getDocs,
+    setDoc,
     collection
 } from "firebase/firestore";
 import { db } from '../config/firebase';
@@ -15,10 +16,11 @@ export const getRequests = async (currentUser) => {
     const querySnapshot = await getDocs(collection(db, "userRequests"));
     querySnapshot.forEach((doc) => {
         doc.data().requests.forEach((request) => {
-            if (request.marker.owner.id === currentUser.uid) {
-                notifications.push({ ...request, isRequest: true });
-            }
-            if (request.user.id === currentUser.uid && request.status !== 'active') {
+            if (request.id === currentUser.uid && request.status === 'follow') {
+                notifications.push(request);
+            } else if (request?.marker?.owner?.id === currentUser.uid) {
+                notifications.push({ ...request, isRequest: true }); 
+            } else if (request?.user?.id === currentUser.uid && request.status !== 'active') {
                 notifications.push({ ...request, isRequest: false });
             }
         });
@@ -57,6 +59,30 @@ export const save = async (selected, currentUser) => {
 
     updateNotifications(1, selected.owner.id);
 }
+
+export const saveFollowRequest = async (userId, currentUserId) => {
+    setDoc(doc(db, "userRequests", userId), {
+        requests: arrayUnion({
+            id: userId,
+            userId: currentUserId,
+            status: 'follow',
+            time: new Date()
+        }),
+    }, { merge: true });
+
+    updateNotifications(1, userId);
+}
+
+export const removeFollowRequest = async (userId, currentUserId) => {
+    const docRef = doc(db, "userRequests", userId);
+    const docSnap = await getDoc(docRef);
+
+    let requests = docSnap.data().requests;
+    requests = requests.filter(request => request.userId !== currentUserId);
+
+    await setDoc(docRef, { requests }, { merge: true });
+};
+
 
 export const update = async (status, marker, id) => {
     const userRequestRef = doc(db, "userRequests", marker.id);

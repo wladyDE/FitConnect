@@ -1,10 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
-import { getUserInfo, followUser, unFollowUser } from '../../../../../../service/SocialService';
+import { followUser, unFollowUser } from '../../../../../../service/SocialService';
+import { saveFollowRequest, removeFollowRequest } from '../../../../../../service/RequestService';
+import { getUser } from '../../../../../../service/UserService';
 import Spinner from '../../../../../spinner/Spinner';
 import backImg from '../../../../../../ressources/img/back.png';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import './userContent.scss';
-import { animateNumber } from '../../../../../../utils/animation'
 
 const UserContent = ({ view: userId, setView }) => {
     const [user, setUser] = useState(null);
@@ -13,28 +14,19 @@ const UserContent = ({ view: userId, setView }) => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const userData = await getUserInfo(userId);
+            const userData = await getUser(userId);
             setUser(userData);
         };
 
         fetchUserData();
     }, []);
 
-
-    useEffect(() => {
-        if (user) {
-            animateNumber(16, 'marker__user-trainings');
-            animateNumber(user.followers || 0, 'marker__user-followers');
-            animateNumber(user.following || 0, 'marker__user-following');
-        }
-    }, [user]);
-
     useEffect(() => {
         if (currentUser.uid === userId) {
             setSocial('nothing');
             return;
         }
-        
+
         if (user) {
             const { followers } = user;
             if (followers) {
@@ -58,11 +50,13 @@ const UserContent = ({ view: userId, setView }) => {
     const onFollow = (userId, currentUserId) => {
         followUser(userId, currentUserId);
         setSocial('unfollow');
+        saveFollowRequest(userId, currentUserId)
     }
 
     const onUnFollow = (userId, currentUserId) => {
         unFollowUser(userId, currentUserId);
         setSocial('follow');
+        removeFollowRequest(userId, currentUserId)
     }
 
     const getSocial = () => {
@@ -92,15 +86,15 @@ const UserContent = ({ view: userId, setView }) => {
                     </div>
                     <div className="marker__user-statistik">
                         <div className="marker__user-social">
-                            <span id='marker__user-trainings'></span>
+                            <span id='marker__user-trainings'>3</span>
                             <p> Trainings</p>
                         </div>
                         <div className="marker__user-social">
-                            <span id='marker__user-followers'></span>
+                            <span id='marker__user-followers'>{user.followers?.length ?? 0}</span>
                             <p> Followers</p>
                         </div>
                         <div className="marker__user-social">
-                            <span id='marker__user-following'></span>
+                            <span id='marker__user-following'>{user.following?.length ?? 0}</span>
                             <p> Following</p>
                         </div>
                     </div>

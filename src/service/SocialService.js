@@ -5,14 +5,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 
-export const getUserInfo = async (userId) => {
-    const docRef = doc(db, "users", userId);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data();
-}
-
 export const followUser = async (userId, currentUserId) => {
-    const { user, currentUser, docRefUser, docRefCurrentUser } = await getUsers(userId, currentUserId);git 
+    const { user, currentUser, docRefUser, docRefCurrentUser } = await getUsers(userId, currentUserId);
 
     const updatedUser = {
         ...user,

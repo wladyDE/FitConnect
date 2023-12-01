@@ -77,6 +77,7 @@ const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn,
       ...values,
       owner: userInfo,
       people: [userInfo],
+      status : 'active',
       time: Timestamp.fromDate(new Date()),
       trainingTime: Timestamp.fromDate(new Date(values.trainingTime))
     };

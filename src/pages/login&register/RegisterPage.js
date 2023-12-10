@@ -30,7 +30,9 @@ const Register = () => {
         photoURL: user,
         description: '',
         followers : 0,
-        following : 0
+        following : 0,
+        myFeedBack : [],
+        rating : []
       });
 
       await setDoc(doc(db, "userMarkers", res.user.uid), { markers: [] });

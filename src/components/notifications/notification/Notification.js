@@ -38,7 +38,7 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
         setRequestStatus('confirmed');
         updateNotifications(1, user.id);
 
-        createChat(currentUser, user);
+ //       createChat(currentUser, user);
     }
 
     const onDecline = () => {

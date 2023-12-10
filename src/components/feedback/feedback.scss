@@ -1,0 +1,36 @@
+.feedback{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgb(36, 35, 35);
+    color: rgb(240, 240, 240);
+    padding: 20px;
+    border-radius: 15px;
+
+    &-subtitle{
+        margin-top: 7px;
+        font-size: 16px;
+    }
+
+    &-description {
+        background-color: rgb(240, 240, 240);
+        width: 100%;
+        margin-top: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    &-btn{
+        background-color:  rgb(247, 149, 58);
+        cursor: pointer;
+        padding: 7px;
+        border-radius: 15px;
+        font-size: 14px;
+
+        &:hover{
+            background-color:  rgb(219, 131, 49);
+        }
+    }
+}

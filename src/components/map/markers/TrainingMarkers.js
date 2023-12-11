@@ -67,8 +67,8 @@ const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn,
   const onFormSubmit = (values) => {
     const userInfo = {
       id: currentUser.uid,
-      name: currentUser.displayName,
-      photo: currentUser.photoURL
+      displayName: currentUser.displayName,
+      photoURL: currentUser.photoURL
     };
 
     const newMarker = {

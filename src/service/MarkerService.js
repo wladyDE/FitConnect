@@ -79,12 +79,17 @@ export const updateParticipants = async (marker, user) => {
   const userRequestSnap = await getDoc(userMarkersRef);
 
   const markers = userRequestSnap.data().markers;
+  
+  const newUser = {
+    ...user,
+    id : user.uid
+  }
 
   const updatedMarkers = markers.map(trainingMarker => {
     if (trainingMarker.id === marker.id) {
       return {
         ...trainingMarker,
-        people: [...trainingMarker.people, user]
+        people: [...trainingMarker.people, newUser]
       };
     }
     return trainingMarker;

@@ -19,7 +19,6 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
     const [user, setUser] = useState(null);
     const { currentUser } = useContext(AuthContext);
 
-
     useEffect(() => {
         const fetchUserData = async () => {
             const userData = await getUser(userId ?? propUser.id);
@@ -36,9 +35,9 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
 
         setNotificationTime(new Timestamp(Math.floor(new Date().getTime() / 1000), 0));
         setRequestStatus('confirmed');
-        updateNotifications(1, user.id);
+        updateNotifications(1, user.uid);
 
- //       createChat(currentUser, user);
+     //   createChat(currentUser, user);
     }
 
     const onDecline = () => {
@@ -49,8 +48,8 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
         updateNotifications(1, user.id);
     }
 
-    const userWhoSentRequestToMePhoto = user?.photo ? user?.photo : defaultPhoto;
-    const userSentRequestToPhoto = marker?.owner?.photo ? marker?.owner?.photo : defaultPhoto;
+    const userWhoSentRequestToMePhoto = user?.photoURL ? user?.photoURL : defaultPhoto;
+    const userSentRequestToPhoto = marker?.owner?.photoURL ? marker?.owner?.photoURL : defaultPhoto;
 
     if (user) {
         return (
@@ -76,13 +75,13 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
                     {(requestStatus === 'confirmed' && !isRequest) && (
                         <div className='request-text'>
                             <img src={userSentRequestToPhoto} alt="profile foto" className="profile-photo" />
-                            <p>{`${marker.owner.name} accepted your request to join ${marker.activityType} training`}</p>
+                            <p>{`${marker.owner.displayName} accepted your request to join ${marker.activityType} training`}</p>
                         </div>
                     )}
                     {(requestStatus === 'rejected' && !isRequest) && (
                         <div className='request-text'>
                             <img src={userSentRequestToPhoto} alt="profile foto" className="profile-photo" />
-                            <p>{`${marker.owner.name} declined your request to join ${marker.activityType} training`}</p>
+                            <p>{`${marker.owner.displayName} declined your request to join ${marker.activityType} training`}</p>
                         </div>
                     )}
                     {(requestStatus === 'follow') && (

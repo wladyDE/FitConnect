@@ -13,7 +13,7 @@
     flex-direction: column;
 
     &.closed {
-        left: -10%;
+        left: -40%;
         transition: left 0.5s ease;
     }
 
@@ -34,8 +34,6 @@
         margin: 0 auto;
         display: block;
         object-fit: cover;
-
-
     }
 
     .user-name {

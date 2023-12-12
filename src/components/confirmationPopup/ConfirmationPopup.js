@@ -5,13 +5,16 @@ import greenCheck from '../../ressources/img/check-green.png';
 
 const ConfirmationPopup = ({ id, setShowPopup }) => {
   const [isVisible, setIsVisible] = useState(true);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(() => {
-        setShowPopup(false);
-      }, 500);
+
+      if (setShowPopup) {
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 500);
+      }
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -33,6 +36,11 @@ const ConfirmationPopup = ({ id, setShowPopup }) => {
       id: "delete",
       text: "Success! Your Training was deleted!",
       src: greenCheck
+    },
+    {
+      id: "feedback",
+      text: "Success! Thank you for you Feedback!",
+      src: greenCheck
     }
   ];
 
@@ -40,10 +48,10 @@ const ConfirmationPopup = ({ id, setShowPopup }) => {
 
   return (
     ReactDOM.createPortal(
-        <div className={`popup ${isVisible ? '' : 'hidden'}`} onClick={() => setIsVisible(false)}>
-          <img src={pop.src} alt={pop.id} className='popup-img' />
-          <p className="popup-text">{pop.text}</p>
-        </div>,
+      <div className={`popup ${isVisible ? '' : 'hidden'}`} onClick={() => setIsVisible(false)}>
+        <img src={pop.src} alt={pop.id} className='popup-img' />
+        <p className="popup-text">{pop.text}</p>
+      </div>,
       document.getElementById('root')
     )
   )

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RatingStars from './ratingStars/RatingStars';
 import { Formik, Form, Field } from 'formik';
-import { getFeedback, updateRating} from '../../service/FeedbackService';
+import { getFeedback, updateRating } from '../../service/FeedbackService';
+import {saveFeedbackNotification} from '../../service/RequestService'; 
 import { AuthContext } from '../../context/AuthContext';
-import { getUser} from '../../service/UserService'
+import { getUser } from '../../service/UserService'
+import ConfirmationPopup from '../confirmationPopup/ConfirmationPopup';
 import defaultUserPhoto from '../../ressources/img/user.png'
 import './feedback.scss'
 
@@ -46,10 +48,11 @@ const Feedback = () => {
     } else {
       const myFeedBack = {
         rating,
-        comment : values.description
+        comment: values.description
       }
-      updateRating(currentUser.uid, feedback.id, feedback.creator, myFeedBack); 
-      setStatus('nothing'); 
+      updateRating(currentUser.uid, feedback.id, feedback.creator, myFeedBack);
+      setStatus('sent');
+      saveFeedbackNotification(feedback.creator ,currentUser.uid)
     }
   };
 
@@ -80,6 +83,10 @@ const Feedback = () => {
 
       </div>
     )
+  } else if (status === 'sent') {
+    return <ConfirmationPopup
+      id='feedback'
+    />
   }
 }
 

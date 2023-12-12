@@ -37,7 +37,7 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
         setRequestStatus('confirmed');
         updateNotifications(1, user.uid);
 
-     //   createChat(currentUser, user);
+        //   createChat(currentUser, user);
     }
 
     const onDecline = () => {
@@ -88,6 +88,12 @@ const Notification = ({ request: { id, marker, time, user: propUser, status, isR
                         <div className='request-text'>
                             <img src={user.photoURL ?? defaultPhoto} alt="profile foto" className="profile-photo" />
                             <p>{`${user.displayName} follows you now`}</p>
+                        </div>
+                    )}
+                    {(requestStatus === 'feedback') && (
+                        <div className='request-text'>
+                            <img src={user.photoURL ?? defaultPhoto} alt="profile foto" className="profile-photo" />
+                            <p>{`${user.displayName} left feedback. Checkt it out`}</p>
                         </div>
                     )}
                     <p className='request-time'>{formatRelative(new Date(notificationTime.seconds * 1000), new Date())}</p>

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import { updateProfile } from "firebase/auth";
 import { db } from '../../../../config/firebase';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import Edit from '../../../../ressources/img/edit.png';
 import Cancel from '../../../../ressources/img/cancel.png';
 import Accept from '../../../../ressources/img/accept.png';
@@ -16,7 +16,7 @@ const UserName = () => {
     const onAcceptClick = async () => {
         const newUserName = document.getElementById('username').value.trim();
         if (newUserName) {
-            await setDoc(doc(db, "users", currentUser.uid), {
+            await updateDoc(doc(db, "users", currentUser.uid), {
                 displayName: newUserName
             });
             await updateProfile(currentUser, {

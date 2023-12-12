@@ -31,8 +31,13 @@ const Register = () => {
         description: '',
         followers : 0,
         following : 0,
+      });
+
+      await setDoc(doc(db, "userFeedback", res.user.uid), {
         myFeedBack : [],
-        rating : []
+        rating : [],
+        ranking : { 1 : 0, 2 : 0, 3 : 0, 4 : 0, 5 : 0},
+        stars : 0 
       });
 
       await setDoc(doc(db, "userMarkers", res.user.uid), { markers: [] });

@@ -1,0 +1,44 @@
+.rating{
+    &__block-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &-stars-number{
+        font-size: 40px;
+        line-height: 1;
+    }
+}
+
+.grey-line {
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    margin: 20px 0;
+  }
+
+.reviews{
+    height: 100px;
+    overflow: auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    &__item{
+        display: flex;
+        gap: 10px;
+    }
+
+    &__user-foto{
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+    &__comment {
+        margin-top: 5px;
+    }
+}

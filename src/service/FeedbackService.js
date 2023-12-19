@@ -11,6 +11,12 @@ import { Timestamp } from "firebase/firestore";
 export const getFeedback = async (userId) => {
     const docRef = doc(db, "userFeedback", userId);
     const docSnap = await getDoc(docRef);
+    return docSnap.data();    
+}
+
+export const getMyFeedback = async (userId) => {
+    const docRef = doc(db, "userFeedback", userId);
+    const docSnap = await getDoc(docRef);
     const newFeedback = docSnap.data().myFeedBack.filter(feedback => feedback.status === 'active');
     return newFeedback.length > 0 ? newFeedback[0] : null;
 }

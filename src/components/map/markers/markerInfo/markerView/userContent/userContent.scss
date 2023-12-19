@@ -69,6 +69,23 @@
     }
 }
 
+.marker__feedback{
+    &-title{
+        display: flex;
+        align-items: center; 
+        gap: 5px;
+    }
+
+    &-stars {
+        color: gold;
+    }
+
+    &-link{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
 @media(max-width:450px) {
     .marker__user{
         flex-direction: column;

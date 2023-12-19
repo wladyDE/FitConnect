@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RatingStars from './ratingStars/RatingStars';
 import { Formik, Form, Field } from 'formik';
-import { getFeedback, updateRating } from '../../service/FeedbackService';
+import { getMyFeedback, updateRating } from '../../service/FeedbackService';
 import {saveFeedbackNotification} from '../../service/RequestService'; 
 import { AuthContext } from '../../context/AuthContext';
 import { getUser } from '../../service/UserService'
@@ -18,7 +18,7 @@ const Feedback = () => {
 
   useEffect(() => {
     const fetchFeedbackData = async () => {
-      const feedback = await getFeedback(currentUser.uid);
+      const feedback = await getMyFeedback(currentUser.uid);
       if (feedback) {
         const user = await getUser(feedback.creator);
         const updatedFeedback = {

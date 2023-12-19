@@ -3,23 +3,36 @@ import { followUser, unFollowUser } from '../../../../../../service/SocialServic
 import { saveFollowRequest, removeFollowRequest } from '../../../../../../service/RequestService';
 import { getUser } from '../../../../../../service/UserService';
 import Spinner from '../../../../../spinner/Spinner';
+import { getFeedback } from '../../../../../../service/FeedbackService';
 import backImg from '../../../../../../ressources/img/back.png';
 import { AuthContext } from '../../../../../../context/AuthContext';
 import './userContent.scss';
+import UserFeedbackTitle from './UserFeedbackTitle';
 
-const UserContent = ({ view: userId, setView }) => {
+const UserContent = ({ view: userId, setView, setUserView}) => {
     const [user, setUser] = useState(null);
     const [social, setSocial] = useState('nothing');
     const { currentUser } = useContext(AuthContext);
+    const [feedback, setFeedback] = useState(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const userData = await getUser(userId);
+            const [userData, userFeedback] = await Promise.all([
+                getUser(userId),
+                getFeedback(userId)
+            ]);
+
             setUser(userData);
+            if(userFeedback?.stars != 0){
+                setFeedback(userFeedback)
+            }
+
+            setUserView(userId)
         };
 
         fetchUserData();
     }, []);
+
 
     useEffect(() => {
         if (currentUser.uid === userId) {
@@ -70,6 +83,13 @@ const UserContent = ({ view: userId, setView }) => {
         }
     }
 
+
+    const showFeedback = () => {
+        if(feedback){
+            return <UserFeedbackTitle setView={setView} userFeedback={feedback}/>
+        }
+    }
+
     if (!user) {
         return <div className="spinner-container"><Spinner /></div>;
     }
@@ -82,7 +102,7 @@ const UserContent = ({ view: userId, setView }) => {
                 <div className="marker__user-content">
                     <div className="marker__user-main">
                         <div className="marker__user-title">{user.displayName}</div>
-                        {getSocial()}
+                        {showFeedback()}
                     </div>
                     <div className="marker__user-statistik">
                         <div className="marker__user-social">
@@ -99,6 +119,7 @@ const UserContent = ({ view: userId, setView }) => {
                         </div>
                     </div>
                     <div className="marker__user-description">{user.description}</div>
+                    {getSocial()}
                 </div>
             </div>
         </>

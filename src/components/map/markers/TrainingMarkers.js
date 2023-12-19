@@ -18,6 +18,7 @@ import { useTransition, animated } from 'react-spring';
 import { animation } from '../../../utils/utils';
 import { filterMarkers } from './utils';
 import ReactDOM from 'react-dom';
+import { getFeedback } from '../../../service/FeedbackService';
 
 const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn, filter }) => {
   const [markers, setMarkers] = useState([]);
@@ -64,11 +65,14 @@ const TrainingMarkers = ({ selected, setSelected, mapClick, plusBtn, setPlusBtn,
     }
   }
 
-  const onFormSubmit = (values) => {
+  const onFormSubmit = async (values) => {
+    const rating = await getFeedback(currentUser.uid); 
+
     const userInfo = {
       id: currentUser.uid,
       displayName: currentUser.displayName,
-      photoURL: currentUser.photoURL
+      photoURL: currentUser.photoURL,
+      rating : rating.stars
     };
 
     const newMarker = {

@@ -55,6 +55,10 @@ let itemsActive = [
     {
         active: false,
         arrowIconActive: false
+    },
+    {
+        active: false,
+        arrowIconActive: false
     }
 ]
 

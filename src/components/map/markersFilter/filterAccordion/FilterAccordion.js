@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AccordionItem } from '../../../accordionItem/AccordionItem';
 import MapFilter from '../filters/MapFilter';
-import { participants, trainings, dates } from '../filters/filterData';
+import { participants, trainings, dates, ratings } from '../filters/filterData';
 import './filterAccordion.scss';
 
 const FilterAccordion = ({ filter, setFilter, showFilter, activeArr, setActiveArr, setShowFilter }) => {
@@ -38,6 +38,19 @@ const FilterAccordion = ({ filter, setFilter, showFilter, activeArr, setActiveAr
             content:
                 <MapFilter
                     items={participants}
+                    filter={filter}
+                    setFilter={setFilter}
+                    activeArr={activeArr}
+                    setActiveArr={setActiveArr}
+                    isReset={isReset}
+                    setIsReset={setIsReset}
+                />
+        },        
+        {
+            name: "Rating",
+            content:
+                <MapFilter
+                    items={ratings}
                     filter={filter}
                     setFilter={setFilter}
                     activeArr={activeArr}

@@ -4,7 +4,8 @@ export const filterMarkers = (filters, markers) => {
     if (filters.length > 0) {
         const dateFilter = filters.filter(filter => filter.filter === 'date'); 
         const trainingFilter = filters.filter(filter => filter.filter === 'training'); 
-        const participantsFilter = filters.filter(filter => filter.filter === 'participants'); 
+        const participantsFilter = filters.filter(filter => filter.filter === 'participants');
+        const ratingFilter = filters.filter(filter => filter.filter === 'rating'); 
 
         return markers.filter(marker => {
             const datePass = dateFilter.length === 0 || dateFilter.some(filter => {
@@ -19,7 +20,11 @@ export const filterMarkers = (filters, markers) => {
                 return marker.maxPeople >= filter.from && marker.maxPeople <= filter.to;
             });
 
-            return datePass && trainingPass && participantsPass;
+            const ratingPass = ratingFilter.length === 0 || ratingFilter.some(filter => {
+                return marker.owner.rating == filter.value;
+            });
+
+            return datePass && trainingPass && participantsPass && ratingPass;
         });
     }
     return markers; 

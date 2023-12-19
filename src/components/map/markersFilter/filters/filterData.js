@@ -198,3 +198,36 @@ export const trainings = [
         isActive: false
     }
 ]
+
+export const ratings = [
+    {
+        value: 1,
+        filter: 'rating',
+        isActive: false
+    },
+    {
+        value: 2,
+        filter: 'rating',
+        isActive: false
+    },
+    {
+        value: 3,
+        filter: 'rating',
+        isActive: false
+    },
+    {
+        value: 4,
+        filter: 'rating',
+        isActive: false
+    },
+    {
+        value: 5,
+        filter: 'rating',
+        isActive: false
+    },
+    {
+        value: 0,
+        filter: 'rating',
+        isActive: false
+    }
+]

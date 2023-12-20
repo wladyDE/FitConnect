@@ -23,50 +23,49 @@ const MarkerInfo = ({ selected, setSelected, deleteMarker, updateMarker }) => {
     }
 
     const onCloseBtnClick = (e) => {
-        e.stopPropagation(); 
-        setSelected(null); 
+        e.stopPropagation();
+        setSelected(null);
     }
 
     return (
-        selected && <Popup position={{ lat, lng }} closeButton={false}>
-            <>
+        selected &&
+        <Popup position={{ lat, lng }} closeButton={false} >
             <button type="button" className="close-button" onClick={(e) => onCloseBtnClick(e)}>&times;</button>
-                {currentUser.uid !== selected.owner.id ? (
-                    <MarkerView selected={selected} />
-                ) : (
-                    <>
-                        {view === 'options' && (
-                            <OptionWindow
-                                onViewBtnClick={onViewBtnClick}
-                                setView={setView}
-                                setSelected={setSelected}
-                            />
-                        )}
+            {currentUser.uid !== selected.owner.id ? (
+                <MarkerView selected={selected} />
+            ) : (
+                <>
+                    {view === 'options' && (
+                        <OptionWindow
+                            onViewBtnClick={onViewBtnClick}
+                            setView={setView}
+                            setSelected={setSelected}
+                        />
+                    )}
 
-                        {view === 'view-only' && (
-                            <MarkerView selected={selected} />
-                        )}
+                    {view === 'view-only' && (
+                        <MarkerView selected={selected} />
+                    )}
 
-                        {view === 'delete confirmation' && (
-                            <ConfirmationModal
-                                onDeleteBtnClick={deleteMarker}
-                                selected={selected}
-                                setSelected={setSelected}
-                                setView={setView}
-                                type={'delete'}
-                            />
-                        )}
+                    {view === 'delete confirmation' && (
+                        <ConfirmationModal
+                            onDeleteBtnClick={deleteMarker}
+                            selected={selected}
+                            setSelected={setSelected}
+                            setView={setView}
+                            type={'delete'}
+                        />
+                    )}
 
-                        {view === 'edit-form' && (
-                            <MapForm
-                                onSubmit={updateMarker}
-                                selected={selected}
-                                setSelected={setSelected}
-                            />
-                        )}
-                    </>
-                )}
-            </>
+                    {view === 'edit-form' && (
+                        <MapForm
+                            onSubmit={updateMarker}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                    )}
+                </>
+            )}
         </Popup>
     );
 }

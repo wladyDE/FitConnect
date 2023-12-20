@@ -4,7 +4,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import { Marker } from 'react-leaflet';
 import { MapForm } from "../mapForm/MapForm";
 import ConfirmationPopup from '../../confirmationPopup/ConfirmationPopup';
-import { trainings, getSize } from '../../../utils/trainings';
+import { trainings } from '../../../utils/trainings';
 import '../map.scss';
 import { v4 as uuid } from "uuid";
 import { Timestamp } from "firebase/firestore";

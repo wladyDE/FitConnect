@@ -35,7 +35,7 @@ const UserFeedback = ({ userView, setView }) => {
 
 
     return (
-      <div>
+      <>
         <img src={backImg} className="marker__user-back-btn" onClick={backToTheMarker} alt='back' />
         <div className="rating">
           <div className="rating__block-left">
@@ -56,7 +56,7 @@ const UserFeedback = ({ userView, setView }) => {
             <UserReview key={index} user={user} rating={rating[index]} />
           ))}
         </div>
-      </div>
+      </>
     );
   }
 };

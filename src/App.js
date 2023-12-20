@@ -34,7 +34,7 @@ function App() {
           <Route path="register" element={<RegisterPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="chat" element={<ChatPage />} />
-          <Route path="groups" element={<Groups />} />
+          <Route path="my-trainings" element={<Groups />} />
 
 
         </Route>

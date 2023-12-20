@@ -1,5 +1,5 @@
 import ChatIcon from '@mui/icons-material/Chat';
-import GroupsIcon from '@mui/icons-material/Groups';
+import { FaPeopleGroup } from "react-icons/fa6";
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
 
@@ -15,9 +15,9 @@ const SideBarData = [
         link: "/chat"
     },
     {
-        title: "Groups",
-        icon: <GroupsIcon />,
-        link: "/groups"
+        title: "My Trainings",
+        icon: <FaPeopleGroup style={{fontSize : '24px'}}/>,
+        link: "/my-trainings"
     },
     {
         title: "Settings",

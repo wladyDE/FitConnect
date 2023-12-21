@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+
+.trainings {
+    height: 100vh;
+    background-color: $main-color;
+    color: $white;
+    padding: 1% 0 0 18%;
+    overflow: auto;
+    box-sizing: border-box;
+
+    &__title {
+        font-size: 22px;
+    }
+
+    &__table {
+        width: 95%;
+        border-collapse: collapse;
+    }
+
+    &__table th,
+    &__table td {
+        border: 1px solid white;
+        padding: 8px;
+        text-align: left;
+    }
+
+    &__table img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+
+    &__button {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    &__edit{
+        background-color: $main-color;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border: 2px solid $white;
+        border-radius: 10px; 
+    }
+}
+
+.cell{
+    transition: background-color 0.5s ease;
+}
+
+.cell:hover{
+    background-color: rgb(255, 168, 54);
+    color : $main-color;
+    transition: background-color 0.5s ease;
+}
+
+.mt30 {
+    margin-top: 30px;
+}

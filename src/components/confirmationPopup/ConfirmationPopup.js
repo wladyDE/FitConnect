@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './confirmationPopup.scss';
 import greenCheck from '../../ressources/img/check-green.png';
 
-const ConfirmationPopup = ({ id, setShowPopup }) => {
+const ConfirmationPopup = ({ id, setShowPopup, whiteBorder }) => {
   const [isVisible, setIsVisible] = useState(true);
   
   useEffect(() => {
@@ -48,7 +48,7 @@ const ConfirmationPopup = ({ id, setShowPopup }) => {
 
   return (
     ReactDOM.createPortal(
-      <div className={`popup ${isVisible ? '' : 'hidden'}`} onClick={() => setIsVisible(false)}>
+      <div className={`popup ${isVisible ? '' : 'hidden'} ${whiteBorder ? 'white-border' : ''}`} onClick={() => setIsVisible(false)}>
         <img src={pop.src} alt={pop.id} className='popup-img' />
         <p className="popup-text">{pop.text}</p>
       </div>,

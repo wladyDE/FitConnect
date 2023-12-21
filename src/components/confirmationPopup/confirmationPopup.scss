@@ -30,6 +30,10 @@
     pointer-events: none;
 }
 
+.white-border {
+    border: 2px solid $white;
+}
+
 @media(max-width:450px) {
     .popup{
         width: 250px;

@@ -1,12 +1,12 @@
 import ChatIcon from '@mui/icons-material/Chat';
 import { FaPeopleGroup } from "react-icons/fa6";
 import SettingsIcon from '@mui/icons-material/Settings';
-import MapIcon from '@mui/icons-material/Map';
+import { FaGlobe } from "react-icons/fa";
 
 const SideBarData = [
     {
         title: "Map",
-        icon: <MapIcon />,
+        icon: <FaGlobe style={{fontSize : '24px'}}/>,
         link: "/"
     },
     {

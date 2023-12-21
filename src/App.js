@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import SettingsPage from './pages/SettingsPage';
 import ChatPage from './pages/chat/ChatPage';
-import Groups from './pages/groups/Groups';
+import MyTrainingsPage from './pages/MyTrainingsPage';
 import './styles/style.scss';
 import 'normalize.css';
 import { AppProvider } from './context/AppContext';
@@ -34,7 +34,7 @@ function App() {
           <Route path="register" element={<RegisterPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="chat" element={<ChatPage />} />
-          <Route path="my-trainings" element={<Groups />} />
+          <Route path="my-trainings" element={<MyTrainingsPage />} />
 
 
         </Route>

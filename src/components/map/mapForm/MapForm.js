@@ -48,7 +48,7 @@ export const MapForm = ({ onSubmit, onClose, selected, setSelected }) => {
     const handleSubmit = (values) => {
         if (selected) {
             onSubmit(values, selected.id);
-            setSelected(null);
+        //    setSelected(null);
         } else {
             onSubmit(values);
         }

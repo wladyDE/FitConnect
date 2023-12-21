@@ -26,6 +26,19 @@ export const load = (onUpdate) => {
   });
 };
 
+export const getMarkers = async (userId) => {
+  const userMarkersRef = doc(db, "userMarkers", userId);
+  const userRequestSnap = await getDoc(userMarkersRef);
+
+  const markers = userRequestSnap.data().markers;
+
+  const finishedMarkers = markers.filter(marker => marker.status === 'finished');
+  const activeMarkers = markers.filter(marker => marker.status === 'active');
+
+  return { finishedMarkers, activeMarkers };
+};
+
+
 export const save = async (marker, currentUser) => {
   await updateDoc(doc(db, "userMarkers", currentUser.uid), {
     markers: arrayUnion({
